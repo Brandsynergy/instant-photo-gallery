@@ -1,0 +1,32 @@
+{
+  "name": "instant-photo-gallery",
+  "version": "1.0.0",
+  "description": "An instant photo gallery and sharing application clone of Zno Instant™",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "python -m http.server 8000"
+  },
+  "keywords": [
+    "photo",
+    "gallery",
+    "instant",
+    "sharing",
+    "photography"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "swiper": "^11.0.0"
+  }
+}

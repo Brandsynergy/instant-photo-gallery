@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zno Instant™ | Snap-Share-Sell in Seconds</title>
+    <meta name="description" content="Snap, share, and sell your photos in seconds with Zno Instant™ — instant photo delivery and sales for photographers. No subscriptions.">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Zno Instant™</h1>
+                </div>
+                <nav class="nav">
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <button class="btn btn-primary">Get Started</button>
+                    <button class="mobile-menu-toggle">☰</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Snap, Share & Sell in Seconds</h1>
+                    <p>Instant photo delivery and sales for photographers. No subscriptions.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large">Start Free Trial</button>
+                        <button class="btn btn-secondary btn-large">Watch Demo</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="photo-preview-container">
+                        <div class="photo-upload-zone" id="photoUpload">
+                            <div class="upload-content">
+                                <div class="upload-icon">📷</div>
+                                <p>Drop photos here or click to upload</p>
+                                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        <div class="photo-grid" id="photoGrid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Zno Instant™?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Delivery</h3>
+                    <p>Photos delivered to clients in seconds, not hours or days.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Direct Sales</h3>
+                    <p>Sell photos instantly with integrated payment processing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Easy Sharing</h3>
+                    <p>Share galleries via QR codes, links, or social media.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Optimized</h3>
+                    <p>Works perfectly on all devices - phone, tablet, desktop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Sample Gallery</h2>
+            <div class="gallery-container">
+                <div class="swiper gallery-swiper">
+                    <div class="swiper-wrapper" id="galleryWrapper">
+                        <!-- Gallery items will be dynamically added here -->
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Upload Photos</h3>
+                    <p>Drag and drop or select your photos to upload instantly.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Create Gallery</h3>
+                    <p>Organize your photos into beautiful, professional galleries.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Share & Sell</h3>
+                    <p>Share via QR code, link, or social media. Accept payments instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Free Trial</h3>
+                    <div class="price">$0<span>/month</span></div>
+                    <ul>
+                        <li>50 photo uploads</li>
+                        <li>Basic gallery features</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="btn btn-secondary">Start Free</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="price">$29<span>/month</span></div>
+                    <ul>
+                        <li>Unlimited uploads</li>
+                        <li>Advanced features</li>
+                        <li>Priority support</li>
+                        <li>Custom branding</li>
+                    </ul>
+                    <button class="btn btn-primary">Choose Plan</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">Custom</div>
+                    <ul>
+                        <li>Everything in Professional</li>
+                        <li>API access</li>
+                        <li>White-label solution</li>
+                        <li>Dedicated support</li>
+                    </ul>
+                    <button class="btn btn-secondary">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Ready to get started?</h3>
+                    <p>Join thousands of photographers who trust Zno Instant™ for their photo sharing and sales needs.</p>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn btn-primary">Get Started</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Zno Instant™</h3>
+                    <p>Snap, share, and sell your photos in seconds.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#help">Help Center</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#privacy">Privacy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Zno Instant™. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div class="modal" id="photoModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img id="modalImage" src="" alt="">
+            <div class="modal-actions">
+                <button class="btn btn-primary">Add to Cart</button>
+                <button class="btn btn-secondary">Download</button>
+                <button class="btn btn-secondary">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
