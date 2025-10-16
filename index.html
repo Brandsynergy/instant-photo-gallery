@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zno Instant™ | Snap-Share-Sell in Seconds</title>
-    <meta name="description" content="Snap, share, and sell your photos in seconds with Zno Instant™ — instant photo delivery and sales for photographers. No subscriptions.">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>INSTANT PICS | Event Photography Made Profitable</title>
+    <meta name="description" content="Turn your event photos into instant income. Create galleries, generate QR codes, and sell photos directly to event attendees.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📸</text></svg>" type="image/svg+xml">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,19 +24,18 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <h1>Zno Instant™</h1>
+                    <h1>📸 INSTANT PICS</h1>
                 </div>
                 <nav class="nav">
                     <ul>
-                        <li><a href="#features">Features</a></li>
+                        <li><a href="#photographer">For Photographers</a></li>
                         <li><a href="#how-it-works">How It Works</a></li>
                         <li><a href="#pricing">Pricing</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#demo">Try Demo</a></li>
                     </ul>
                 </nav>
                 <div class="header-actions">
-                    <button class="btn btn-primary">Get Started</button>
+                    <button class="btn btn-primary">Start Selling</button>
                     <button class="mobile-menu-toggle">☰</button>
                 </div>
             </div>
@@ -48,70 +47,171 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Snap, Share & Sell in Seconds</h1>
-                    <p>Instant photo delivery and sales for photographers. No subscriptions.</p>
+                    <h1>Turn Event Photos Into Instant Income</h1>
+                    <p>Upload your event photos, generate a QR code, and let attendees buy their favorites instantly!</p>
                     <div class="hero-actions">
-                        <button class="btn btn-primary btn-large">Start Free Trial</button>
-                        <button class="btn btn-secondary btn-large">Watch Demo</button>
+                        <button class="btn btn-primary btn-large" onclick="scrollToSection('photographer')">Start Making Money</button>
+                        <button class="btn btn-secondary btn-large" onclick="scrollToSection('demo')">See Demo</button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">$2-10</span>
+                            <span class="stat-label">Per Photo</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Instant</span>
+                            <span class="stat-label">Payment</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">QR Code</span>
+                            <span class="stat-label">Sharing</span>
+                        </div>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="photo-preview-container">
-                        <div class="photo-upload-zone" id="photoUpload">
-                            <div class="upload-content">
-                                <div class="upload-icon">📷</div>
-                                <p>Drop photos here or click to upload</p>
-                                <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                    <div class="workflow-demo">
+                        <div class="step-visual">
+                            <div class="phone-mockup">
+                                <div class="phone-screen">
+                                    <div class="demo-photos">
+                                        <div class="demo-photo"></div>
+                                        <div class="demo-photo"></div>
+                                        <div class="demo-photo"></div>
+                                        <div class="demo-photo"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="qr-code-demo">
+                                <div class="qr-placeholder">
+                                    <div class="qr-squares">
+                                        <span></span><span></span><span></span>
+                                        <span></span><span></span><span></span>
+                                        <span></span><span></span><span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="money-icon">💰</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photographer Workflow Section -->
+    <section class="photographer-section" id="photographer">
+        <div class="container">
+            <h2 class="section-title">For Event Photographers</h2>
+            <div class="photographer-demo">
+                <div class="upload-section">
+                    <h3>📷 Step 1: Upload Your Event Photos</h3>
+                    <div class="photo-upload-zone" id="photoUpload">
+                        <div class="upload-content">
+                            <div class="upload-icon">📷</div>
+                            <p>Drop your event photos here or click to upload</p>
+                            <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    <div class="photo-grid" id="photoGrid"></div>
+                </div>
+                
+                <div class="pricing-section">
+                    <h3>💰 Step 2: Set Your Price</h3>
+                    <div class="price-controls">
+                        <label for="photoPrice">Price per photo:</label>
+                        <div class="price-input">
+                            <span>$</span>
+                            <input type="number" id="photoPrice" value="5.00" min="1" step="0.50">
+                        </div>
+                        <div class="price-suggestions">
+                            <button class="price-btn" onclick="setPrice(2.00)">$2</button>
+                            <button class="price-btn" onclick="setPrice(5.00)">$5</button>
+                            <button class="price-btn" onclick="setPrice(10.00)">$10</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="qr-section">
+                    <h3>📱 Step 3: Share Your QR Code</h3>
+                    <div class="qr-generator">
+                        <button class="btn btn-primary" id="generateQR" onclick="generateQRCode()">Generate QR Code</button>
+                        <div class="qr-display" id="qrDisplay" style="display: none;">
+                            <div class="qr-code" id="qrCode"></div>
+                            <p>Show this QR code to event attendees!</p>
+                            <button class="btn btn-secondary" onclick="downloadQR()">Download QR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Experience Section -->
+    <section class="customer-section" id="demo">
+        <div class="container">
+            <h2 class="section-title">What Your Customers See</h2>
+            <div class="customer-demo">
+                <div class="customer-phone">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="customer-gallery">
+                                <div class="gallery-header">
+                                    <h3>Wedding Photos - Sarah & John</h3>
+                                    <p>Select photos to purchase ($5.00 each)</p>
+                                </div>
+                                <div class="gallery-grid">
+                                    <div class="customer-photo" onclick="selectPhoto(this)">
+                                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=200&h=200&fit=crop" alt="Wedding photo">
+                                        <div class="photo-overlay">
+                                            <span class="price">$5.00</span>
+                                            <div class="select-btn">✓</div>
+                                        </div>
+                                    </div>
+                                    <div class="customer-photo" onclick="selectPhoto(this)">
+                                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=200&h=200&fit=crop" alt="Wedding photo">
+                                        <div class="photo-overlay">
+                                            <span class="price">$5.00</span>
+                                            <div class="select-btn">✓</div>
+                                        </div>
+                                    </div>
+                                    <div class="customer-photo" onclick="selectPhoto(this)">
+                                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=200&h=200&fit=crop" alt="Wedding photo">
+                                        <div class="photo-overlay">
+                                            <span class="price">$5.00</span>
+                                            <div class="select-btn">✓</div>
+                                        </div>
+                                    </div>
+                                    <div class="customer-photo" onclick="selectPhoto(this)">
+                                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=200&h=200&fit=crop" alt="Wedding photo">
+                                        <div class="photo-overlay">
+                                            <span class="price">$5.00</span>
+                                            <div class="select-btn">✓</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="customer-cart">
+                                    <div class="cart-summary">
+                                        <span id="selectedCount">0 photos selected</span>
+                                        <span id="totalPrice">Total: $0.00</span>
+                                    </div>
+                                    <button class="btn btn-primary" id="checkoutBtn" disabled>Purchase & Download</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="photo-grid" id="photoGrid"></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2 class="section-title">Why Choose Zno Instant™?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Instant Delivery</h3>
-                    <p>Photos delivered to clients in seconds, not hours or days.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Direct Sales</h3>
-                    <p>Sell photos instantly with integrated payment processing.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔗</div>
-                    <h3>Easy Sharing</h3>
-                    <p>Share galleries via QR codes, links, or social media.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <h3>Mobile Optimized</h3>
-                    <p>Works perfectly on all devices - phone, tablet, desktop.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
-        <div class="container">
-            <h2 class="section-title">Sample Gallery</h2>
-            <div class="gallery-container">
-                <div class="swiper gallery-swiper">
-                    <div class="swiper-wrapper" id="galleryWrapper">
-                        <!-- Gallery items will be dynamically added here -->
-                    </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                <div class="demo-instructions">
+                    <h3>👆 Try the Demo!</h3>
+                    <p>Click on photos to select them and see how easy it is for customers to buy your photos.</p>
+                    <ul>
+                        <li>✓ Customers scan your QR code</li>
+                        <li>✓ Browse your event photos</li>
+                        <li>✓ Select favorites</li>
+                        <li>✓ Pay instantly</li>
+                        <li>✓ Download to their phone</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -144,39 +244,70 @@
     <!-- Pricing Section -->
     <section class="pricing" id="pricing">
         <div class="container">
-            <h2 class="section-title">Simple Pricing</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3>Free Trial</h3>
-                    <div class="price">$0<span>/month</span></div>
-                    <ul>
-                        <li>50 photo uploads</li>
-                        <li>Basic gallery features</li>
-                        <li>Email support</li>
-                    </ul>
-                    <button class="btn btn-secondary">Start Free</button>
+            <h2 class="section-title">Transparent Pricing</h2>
+            <div class="pricing-explanation">
+                <h3>How You Make Money</h3>
+                <p>Keep 85% of every photo sale. We only take 15% to cover payment processing and platform costs.</p>
+            </div>
+            <div class="pricing-calculator">
+                <h4>Revenue Calculator</h4>
+                <div class="calculator">
+                    <div class="calc-input">
+                        <label>Photos sold per event:</label>
+                        <input type="number" id="photosSold" value="20" min="1">
+                    </div>
+                    <div class="calc-input">
+                        <label>Price per photo:</label>
+                        <select id="photoPrice">
+                            <option value="2">$2.00</option>
+                            <option value="5" selected>$5.00</option>
+                            <option value="8">$8.00</option>
+                            <option value="10">$10.00</option>
+                        </select>
+                    </div>
+                    <div class="calc-results">
+                        <div class="result-row">
+                            <span>Total Sales:</span>
+                            <span id="totalSales">$100.00</span>
+                        </div>
+                        <div class="result-row">
+                            <span>Platform Fee (15%):</span>
+                            <span id="platformFee">$15.00</span>
+                        </div>
+                        <div class="result-row highlight">
+                            <span>Your Earnings:</span>
+                            <span id="yourEarnings">$85.00</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="pricing-card featured">
-                    <h3>Professional</h3>
-                    <div class="price">$29<span>/month</span></div>
-                    <ul>
-                        <li>Unlimited uploads</li>
-                        <li>Advanced features</li>
-                        <li>Priority support</li>
-                        <li>Custom branding</li>
-                    </ul>
-                    <button class="btn btn-primary">Choose Plan</button>
-                </div>
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="price">Custom</div>
-                    <ul>
-                        <li>Everything in Professional</li>
-                        <li>API access</li>
-                        <li>White-label solution</li>
-                        <li>Dedicated support</li>
-                    </ul>
-                    <button class="btn btn-secondary">Contact Sales</button>
+            </div>
+            <div class="pricing-features">
+                <h4>What's Included</h4>
+                <div class="features-list">
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Unlimited photo uploads</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>QR code generation</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Instant payment processing</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Mobile-optimized galleries</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Automatic watermark removal</span>
+                    </div>
+                    <div class="feature">
+                        <span class="feature-icon">✓</span>
+                        <span>Sales analytics</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -206,8 +337,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <h3>Zno Instant™</h3>
-                    <p>Snap, share, and sell your photos in seconds.</p>
+                    <h3>📸 INSTANT PICS</h3>
+                    <p>Turn your event photos into instant income.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -249,6 +380,6 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
-    <script src="src/main.js"></script>
+    <script src="src/instant-pics.js"></script>
 </body>
 </html>
