@@ -195,18 +195,47 @@ class InstantPics {
         localStorage.setItem(this.galleryId, JSON.stringify(galleryData));
         
         // Create QR code URL (in real app, this would be your domain)
-        const galleryUrl = `${window.location.origin}/gallery/${this.galleryId}`;
+        const galleryUrl = `${window.location.origin}?gallery=${this.galleryId}`;
         
-        // Show QR code (using a simple QR code pattern for demo)
+        // Show QR code with real QR library
         const qrDisplay = document.getElementById('qrDisplay');
         const qrCode = document.getElementById('qrCode');
         
-        if (qrDisplay && qrCode) {
-            // Create a simple QR code pattern (in production, use a real QR library)
+        if (qrDisplay && qrCode && typeof QRCode !== 'undefined') {
+            // Clear previous QR code
+            qrCode.innerHTML = '';
+            
+            // Generate real QR code
+            QRCode.toCanvas(qrCode, galleryUrl, {
+                width: 200,
+                margin: 2,
+                color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                }
+            }, (error) => {
+                if (error) {
+                    console.error('QR Code generation failed:', error);
+                    // Fallback to simple pattern
+                    qrCode.innerHTML = this.generateQRPattern(galleryUrl);
+                } else {
+                    // Add URL text below QR code
+                    const urlText = document.createElement('p');
+                    urlText.textContent = galleryUrl;
+                    urlText.style.fontSize = '12px';
+                    urlText.style.marginTop = '10px';
+                    urlText.style.wordBreak = 'break-all';
+                    qrCode.appendChild(urlText);
+                }
+            });
+            
+            qrDisplay.style.display = 'block';
+            this.showNotification('QR Code generated! Share this with event attendees.');
+        } else {
+            // Fallback if QR library isn't loaded
             qrCode.innerHTML = this.generateQRPattern(galleryUrl);
             qrDisplay.style.display = 'block';
-            
-            this.showNotification('QR Code generated! Share this with event attendees.');
+            this.showNotification('QR Code generated (demo version)!');
         }
     }
 
@@ -281,6 +310,73 @@ class InstantPics {
         }
     }
 
+    loadGalleryFromQR(galleryId) {
+        // Load gallery data from localStorage (in real app, from database)
+        const galleryData = localStorage.getItem(galleryId);
+        
+        if (galleryData) {
+            const gallery = JSON.parse(galleryData);
+            this.photoPrice = gallery.price;
+            this.uploadedPhotos = gallery.photos;
+            
+            // Transform the page into customer view
+            this.showCustomerView(gallery);
+        } else {
+            this.showNotification('Gallery not found. Please check the QR code.');
+        }
+    }
+    
+    showCustomerView(gallery) {
+        // Hide photographer sections and show customer gallery
+        const photographerSection = document.getElementById('photographer');
+        const heroSection = document.querySelector('.hero');
+        const pricingSection = document.getElementById('pricing');
+        
+        if (photographerSection) photographerSection.style.display = 'none';
+        if (pricingSection) pricingSection.style.display = 'none';
+        
+        // Update hero for customer experience
+        if (heroSection) {
+            heroSection.innerHTML = `
+                <div class="container">
+                    <div class="customer-gallery-view">
+                        <div class="gallery-header">
+                            <h1>📸 Event Photos</h1>
+                            <p>Select your favorite photos to purchase ($${gallery.price.toFixed(2)} each)</p>
+                        </div>
+                        <div class="customer-photos" id="customerPhotos"></div>
+                        <div class="customer-cart" id="customerCart">
+                            <div class="cart-summary">
+                                <span id="selectedCount">0 photos selected</span>
+                                <span id="totalPrice">Total: $0.00</span>
+                            </div>
+                            <button class="btn btn-primary" id="checkoutBtn" disabled onclick="checkout()">Purchase & Download</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Render customer photos
+        this.renderCustomerPhotos();
+        this.showNotification('Welcome! Select photos you want to purchase.');
+    }
+    
+    renderCustomerPhotos() {
+        const customerPhotos = document.getElementById('customerPhotos');
+        if (!customerPhotos) return;
+        
+        customerPhotos.innerHTML = this.uploadedPhotos.map(photo => `
+            <div class="customer-photo" data-photo-id="${photo.id}" onclick="selectPhoto(this)">
+                <img src="${photo.src}" alt="Event photo" loading="lazy">
+                <div class="photo-overlay">
+                    <span class="price">$${this.photoPrice.toFixed(2)}</span>
+                    <div class="select-btn">✓</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
     showNotification(message) {
         // Create notification element
         const notification = document.createElement('div');
@@ -341,12 +437,43 @@ function downloadQR() {
     window.instantPics?.showNotification('QR code download feature coming soon!');
 }
 
+function checkout() {
+    const selectedCount = window.instantPics?.selectedPhotos.size || 0;
+    if (selectedCount === 0) {
+        window.instantPics?.showNotification('Please select photos first!');
+        return;
+    }
+    
+    const totalPrice = selectedCount * window.instantPics?.photoPrice;
+    
+    // In a real app, this would integrate with Stripe, PayPal, etc.
+    const proceed = confirm(`Purchase ${selectedCount} photo${selectedCount > 1 ? 's' : ''} for $${totalPrice.toFixed(2)}?`);
+    
+    if (proceed) {
+        window.instantPics?.showNotification(`Payment successful! ${selectedCount} photo${selectedCount > 1 ? 's' : ''} downloaded to your device.`);
+        
+        // Simulate download (in real app, would provide actual download)
+        setTimeout(() => {
+            window.instantPics?.showNotification('Photos saved to your gallery!');
+        }, 2000);
+    }
+}
+
 // Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
     window.instantPics = new InstantPics();
     
-    // Set up demo photo selection
-    document.querySelectorAll('.customer-photo').forEach(photo => {
-        photo.addEventListener('click', () => selectPhoto(photo));
-    });
+    // Check if someone scanned a QR code
+    const urlParams = new URLSearchParams(window.location.search);
+    const galleryId = urlParams.get('gallery');
+    
+    if (galleryId) {
+        // Load the gallery from QR scan
+        window.instantPics.loadGalleryFromQR(galleryId);
+    } else {
+        // Set up demo photo selection for homepage
+        document.querySelectorAll('.customer-photo').forEach(photo => {
+            photo.addEventListener('click', () => selectPhoto(photo));
+        });
+    }
 });
